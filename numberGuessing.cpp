@@ -4,8 +4,21 @@
 
 using std::cout, std::cin, std::string;
 
+void print_array(int array[], int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        cout << array[i] << '\t';
+    }
+    cout << '\n';
+}
+
 void play_game()
 {
+    // I added an array with the size of 101 to containe all the possible values
+    int guesses[101];
+    // and a guess count so i can determine the amount of guesses and make it the size of the array in the print_array() function
+    int guess_count = 0;
     // the random variable will generate a random number using the rand() function
     //  and we can set a range from 0 to 100 by using the modular operator (%)
     int random = 1 + (rand() % 100);
@@ -15,6 +28,8 @@ void play_game()
     {
         int guess;
         cin >> guess;
+
+        guesses[guess_count++] = guess;
         // here the if statement will check the input , if the input was right we will use the break; to break throw this loop
         if (guess == random)
         {
@@ -30,6 +45,8 @@ void play_game()
             cout << "Too high\n";
         }
     }
+    cout << "your number of guesses: \n";
+    print_array(guesses, guess_count);
 }
 
 int main()
