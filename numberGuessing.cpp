@@ -6,13 +6,16 @@ using std::cout, std::cin, std::string;
 
 void play_game()
 {
+    // the random variable will generate a random number using the rand() function
+    //  and we can set a range from 0 to 100 by using the modular operator (%)
     int random = 1 + (rand() % 100);
-    cout << random << '\n';
     cout << "Guess a Number: ";
+    // I created a (while loop) so it keeps running if the guess was wrong
     while (true)
     {
         int guess;
         cin >> guess;
+        // here the if statement will check the input , if the input was right we will use the break; to break throw this loop
         if (guess == random)
         {
             cout << "You Win!\n";
@@ -33,22 +36,38 @@ int main()
 {
 
     cout << "****************Welcome to the number guessing game****************\n";
+    // I used the srand() function from the stdlib library because
+    //  when you try to call the rand() function it will give you a random number
+    //  but if you try to call it again it will give you the same number from before
+    // so we use the srand() function because if you pass any random number to it as an argument , it will change the rand() number
+    // but it will stick to this new random number too so we need to keep changing the passed number in the srand()
+    // we can use the time() function from the ctime library, this function counts the seconds from the creation of c++ to this day
     srand(time(NULL));
-    int choice;
 
+    // I declared the variable choice so the (do while loop) can check the condition
+    int choice;
+    // I made a (do while loop ) so the game always run if want to play again
     do
     {
+        // i put the input in the (do while loop ) so it always ask you when the game finish if you want to continue or not
         cout << "0. Quit" << std::endl
              << "1. Play Game\n";
         cin >> choice;
 
+        // here I made a switch so it can has a case if you quit
+        // and a case if you play the game
+        // and a default if you chooses an invalid number
         switch (choice)
         {
         case 0:
             cout << "Thanks for nothing!\n";
             return 0;
         case 1:
+            // here i made a function that has all the logic of the game
             play_game();
+            break;
+        default:
+            cout << "invalid number!";
             break;
         }
 
